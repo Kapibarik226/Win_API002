@@ -8,7 +8,9 @@ HINSTANCE        hInstance; 			//  Экземпляр этой программы
 
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)   //  Функция обработки сообщений от...
-{																				  //  ...OS Windows	
+{			
+HDC hdc; //??????? ???????? ??????????
+PAINTSTRUCT ps; //??????? ????????? ????????? ???????????? ??????//  ...OS Windows	
 	switch(message)
 	{
 		case  WM_CREATE:   SetTimer(hWnd, 1, 200, 0); 
@@ -16,12 +18,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 						                        //  Принимаем однократное сообщение для инициализации
 	    case WM_DESTROY:   PostQuitMessage(0);             //  Принимаем однократное сообщение для ДЕ_инициализации
 		 	 			   break;		 	 		
-		case WM_COMMAND: 
+		case WM_COMMAND:   switch(LOWORD(wParam))
+	                	{
+		                   case 100:xCetka ();
+		                   break;
+						}
 			               break;	
 										 
 		case WM_MOUSEMOVE: xMove = LOWORD(lParam);	  // Во время перемещения мыши сюда приходят сообщения от OS
 						   yMove = HIWORD(lParam); 							 
 						   break; 
+		case WM_RBUTTONDOWN:
+        case WM_LBUTTONDOWN:
+        char *str;
+        HDC hDC;
+
+        hDC=GetDC(hWnd);
+        x=LOWORD(lParam); //?????? ??????????
+        y=HIWORD(lParam);
+
+        TextOut(hDC, x, y, szText, strlen(szText));
+
+break;
 						   					 	   
 		        default:   return DefWindowProc(hWnd, message, wParam, lParam);   // обработка OS остальных сообщений
 	}

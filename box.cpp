@@ -30,3 +30,11 @@ void xCetka ()
 		ReleaseDC(hWnd,hdc);
 	}
 	
+void xKv ()
+	{
+		
+		
+		
+		
+		
+	}
