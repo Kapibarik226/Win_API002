@@ -1,0 +1,14 @@
+
+
+xMENU MENU
+
+{
+
+POPUP "&Options"
+{
+	
+ MENUITEM "&SETKA", 100
+ MENUITEM  "&  " ,  111
+}
+}
+MYICON ICON ico.ico
